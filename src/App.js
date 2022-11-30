@@ -1,8 +1,11 @@
 import './App.css';
 import axios from 'axios'
+import { useState } from 'react'
 
 function App() {
 
+  const [ingredients, setIngredients] = useState('')
+  
   const API_KEY = 'LQfG4o46WCky/bl4BnGjrg==h5GhOQ54nyPvc0O1';
 
   const fetchCocktailRecipe = async () => {
@@ -12,15 +15,16 @@ function App() {
           'X-Api-Key': API_KEY,
         },
       });
-      console.log(resp)
+      setIngredients(resp.data[0].ingredients);
+      console.log(ingredients)
     } catch(error) {
 
     }
-  }
+  } 
   fetchCocktailRecipe();
   return (
     <div className="App">
-    hello
+    {ingredients}
     </div>
   );
   
