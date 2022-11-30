@@ -5,6 +5,7 @@ import { useState } from 'react'
 function App() {
 
   const [ingredients, setIngredients] = useState([])
+  const [cockTailName, setCockTailName] = useState('')
   
   const API_KEY = 'LQfG4o46WCky/bl4BnGjrg==h5GhOQ54nyPvc0O1';
 
@@ -15,8 +16,8 @@ function App() {
           'X-Api-Key': API_KEY,
         },
       });
+      setCockTailName(resp.data[0].name)
       setIngredients(resp.data[0].ingredients);
-      console.log(ingredients)
     } catch(error) {
 
     }
@@ -24,9 +25,10 @@ function App() {
   fetchCocktailRecipe();
   return (
     <div className="App">
+    <label>{cockTailName}</label>
     {ingredients.map(p => (
-      <ul>
-        <li>{p}</li>
+      <ul key={p}>
+        <li key={p}>{p}</li>
       </ul>
     ))}
     </div>
