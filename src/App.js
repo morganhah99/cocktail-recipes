@@ -11,20 +11,20 @@ function App() {
 
   const fetchCocktailRecipe = async () => {
     try {
-      const resp = await axios('https://api.api-ninjas.com/v1/cocktail?name=bloody mary', {
+      const resp = await axios(`https://api.api-ninjas.com/v1/cocktail?name=${cockTailName}`, {
         headers: {
           'X-Api-Key': API_KEY,
         },
       });
-      setCockTailName(resp.data[0].name)
       setIngredients(resp.data[0].ingredients);
     } catch(error) {
 
     }
   } 
-  fetchCocktailRecipe();
   return (
     <div className="App">
+    <input type="text" placeholder="username" onChange={e => setCockTailName(e.target.value)} />
+    <button onClick={fetchCocktailRecipe}>submit</button>
     <label>{cockTailName}</label>
     {ingredients.map(p => (
       <ul key={p}>
