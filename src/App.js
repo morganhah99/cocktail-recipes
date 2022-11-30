@@ -1,10 +1,10 @@
-import './App.css';
+
 import axios from 'axios'
 import { useState } from 'react'
 
 function App() {
 
-  const [ingredients, setIngredients] = useState('')
+  const [ingredients, setIngredients] = useState([])
   
   const API_KEY = 'LQfG4o46WCky/bl4BnGjrg==h5GhOQ54nyPvc0O1';
 
@@ -24,7 +24,11 @@ function App() {
   fetchCocktailRecipe();
   return (
     <div className="App">
-    {ingredients}
+    {ingredients.map(p => (
+      <ul>
+        <li>{p}</li>
+      </ul>
+    ))}
     </div>
   );
   
