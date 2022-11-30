@@ -1,7 +1,7 @@
-
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Results from './Results'
+import './App.css'
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 8000)
+    }, 4000)
   })
   
   const API_KEY = 'LQfG4o46WCky/bl4BnGjrg==h5GhOQ54nyPvc0O1';
@@ -31,14 +31,15 @@ function App() {
     }
   } 
   return (
-    <div className="App">
-    <input type="text" placeholder="Enter cocktail or ingredient" onChange={e => setCockTailName(e.target.value)} />
-    <button onClick={fetchCocktailRecipe}>submit</button>
+    <div className="container">
+      <div className='textbox'>
+        <input type="text" placeholder="Enter cocktail or ingredient" onChange={e => setCockTailName(e.target.value)} />
+        <button onClick={fetchCocktailRecipe}>submit</button>
+      </div>
     {
-      loading ?
-      
-      <div>loading</div>
+      loading ? //if loading is true, load the div, otherwise load the results component
 
+      <div>loading</div>
       :
       <Results ingredients={ingredients} cockTailName={cockTailName}/>
     }
